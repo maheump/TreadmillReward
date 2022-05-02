@@ -28,6 +28,7 @@ __MACOSX
 
 # Backup MATLAB files
 *.m~
+*.asv
 
 # Private folders
 private
