@@ -16,6 +16,12 @@ function TreadmillReward_RunStateMachine
 % Declare global variable which can be accessed outside this function
 global BpodSystem;
 
+% Clear data from previous session
+BpodSystem.Data = [];
+
+% Declare debugging option
+debug = false;
+
 % Load settings chosen in launch manager
 S = BpodSystem.ProtocolSettings;
 
@@ -51,7 +57,7 @@ for iRewLoc = 1:MaxRewLoc
     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     % Prepare current trial's state machine
-    sma = TreadmillReward_PrepareStateMachine(S, param, TrialTypes, iRewLoc);
+    sma = TreadmillReward_PrepareStateMachine(S, param, TrialTypes, iRewLoc, debug);
     
     % Send state machine to the Bpod state machine device
     SendStateMatrix(sma);

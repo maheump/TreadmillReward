@@ -16,6 +16,12 @@ function TreadmillReward_TrialManagerObject
 % Declare global variable which can be accessed outside this function
 global BpodSystem;
 
+% Clear data from previous session
+BpodSystem.Data = [];
+
+% Declare debugging option
+debug = true;
+
 % Load settings chosen in launch manager
 S = BpodSystem.ProtocolSettings;
 
@@ -36,7 +42,7 @@ TreadmillReward_CreatePlots(TrialTypes);
 TrialManager = TrialManagerObject;
 
 % Prepare first trial's state machine
-sma = TreadmillReward_PrepareStateMachine(S, param, TrialTypes, 1);
+sma = TreadmillReward_PrepareStateMachine(S, param, TrialTypes, 1, debug);
 
 % Start first trial
 TrialManager.startTrial(sma);
@@ -49,7 +55,7 @@ for iRewLoc = 1:MaxRewLoc
     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     % Prepare next trial's state machine
-    sma = TreadmillReward_PrepareStateMachine(S, param, TrialTypes, iRewLoc + 1);
+    sma = TreadmillReward_PrepareStateMachine(S, param, TrialTypes, iRewLoc + 1, debug);
     
     % Hangs here until trial end, then returns the trial's raw data
     RawEvents = TrialManager.getTrialData;
