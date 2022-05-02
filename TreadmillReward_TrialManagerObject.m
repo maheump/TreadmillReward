@@ -65,7 +65,7 @@ for iRewLoc = 1:MaxRewLoc
     
     % Update trial list if the reward probability was changed
     if iRewLoc > 1
-        TrialTypes = TreadmillReward_UpdateTrialList(S, TrialTypes, iRewLoc);
+        TrialTypes = TreadmillReward_UpdateTrialList(S, TrialTypes, iRewLoc, MaxRewLoc);
     end
     
     % Start next trial

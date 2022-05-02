@@ -1,4 +1,4 @@
-function TrialTypes = TreadmillReward_UpdateTrialList(S, TrialTypes, iRewLoc)
+function TrialTypes = TreadmillReward_UpdateTrialList(S, TrialTypes, iRewLoc, MaxRewLoc)
 % This function updates the list of trial type, that is whether they are
 % regular (with reward) or catch trials (with omitted reward). The list is
 % updated only if the reward probability is changed by the experimenter
@@ -21,7 +21,7 @@ CurrProba = S.GUI.Reward_probability;
 if PrevProba ~= CurrProba
     
     % Thus create a new trial list for the trials that were not yet presented
-    TrialTypes(iRewLoc:end) = TreadmillReward_CreateTrialList(MaxRewLoc-iRewLoc+1, CurrProba);
+    TrialTypes(iRewLoc:end) = TreadmillReward_CreateTrialList(S, MaxRewLoc-iRewLoc+1);
 end
     
 end
