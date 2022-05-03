@@ -19,9 +19,6 @@ global BpodSystem;
 % Clear data from previous session
 BpodSystem.Data = [];
 
-% Declare debugging option
-debug = true;
-
 % Load settings chosen in launch manager
 S = BpodSystem.ProtocolSettings;
 
@@ -55,7 +52,7 @@ for iRewLoc = 1:MaxRewLoc
     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     % Prepare next trial's state machine
-    sma = TreadmillReward_PrepareStateMachine(S, param, TrialTypes, iRewLoc + 1, debug);
+    sma = TreadmillReward_PrepareStateMachine(S, param, TrialTypes, iRewLoc + 1);
     
     % Hangs here until trial end, then returns the trial's raw data
     RawEvents = TrialManager.getTrialData;
