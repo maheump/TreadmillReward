@@ -5,6 +5,7 @@ _TreadmillReward_ is a [Bpod](https://sites.google.com/site/bpoddocumentation/) 
 The repository contains two main protocol functions:
 - ```TreadmillReward_RunStateMachine```
 - ```TreadmillReward_TrialManagerObject```
+
 Both run the exact same protocol, whose states are defined in ```TreadmillReward_PrepareStateMachine```. The ```*RunStateMachine``` version has a simpler syntax but will suffer from dead time after each trial in which the Bpod will fail to monitor events. By contrast, the ```*TrialManagerObject``` will drastically reduce between trials dead time such that is is very unlikely that any events are missed
 (see [here](https://sites.google.com/site/bpoddocumentation/user-guide/function-reference/trialmanagerobject?authuser=0)), we thus recomend using this version for data acquisition.
 
