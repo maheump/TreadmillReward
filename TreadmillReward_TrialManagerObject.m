@@ -60,6 +60,9 @@ for iRewLoc = 1:MaxRewLoc
     % Update task parameters
     % ~~~~~~~~~~~~~~~~~~~~~~
     
+    % If user hit console "stop" button, end session 
+    if BpodSystem.Status.BeingUsed == 0; return; end
+    
     % Sync parameters with the GUI
     S = BpodParameterGUI('Sync', S);
     
@@ -73,9 +76,6 @@ for iRewLoc = 1:MaxRewLoc
     
     % Start next trial
     % ~~~~~~~~~~~~~~~~
-    
-    % If user hit console "stop" button, end session 
-    if BpodSystem.Status.BeingUsed == 0; return; end
     
     % Start next trial's state machine
     TrialManager.startTrial(sma);
