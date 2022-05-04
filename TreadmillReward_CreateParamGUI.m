@@ -20,7 +20,7 @@ S.GUI.BNC_output_Licks          = 1;         % BNC output ID
 S.GUI.BNC_output_Rewards        = 2;         % BNC output ID
 S.GUI.Reward_window_visibility  = 0;         % boolean
 S.GUI.Unlimited_reward          = 0;         % boolean
-S.GUI.Reward_amount             = 5;         % microliter(s)
+S.GUI.Reward_amount             = 2;         % microliter(s)
 S.GUI.Reward_probability        = 0.9;       % probability
 
 % Specify that some of those parameters should be shown as check boxes
