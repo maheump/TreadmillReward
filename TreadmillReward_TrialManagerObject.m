@@ -39,7 +39,7 @@ TreadmillReward_CreatePlots(TrialTypes);
 TrialManager = TrialManagerObject;
 
 % Prepare first trial's state machine
-sma = TreadmillReward_PrepareStateMachine(S, param, TrialTypes, 1, debug);
+sma = TreadmillReward_PrepareStateMachine(S, param, TrialTypes, 1);
 
 % Start first trial
 TrialManager.startTrial(sma);
