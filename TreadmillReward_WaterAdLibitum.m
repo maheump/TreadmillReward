@@ -4,12 +4,6 @@ function TreadmillReward_WaterAdLibitum
 % 
 % Maxime Maheu, (C)opyright 2022
 
-% Declare global variable which can be accessed outside this function
-global BpodSystem;
-
-% Load settings chosen in launch manager
-S = BpodSystem.ProtocolSettings;
-
 % Define which reward port to use
 rewardport = 1;
 
