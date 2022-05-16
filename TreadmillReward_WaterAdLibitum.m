@@ -4,6 +4,9 @@ function TreadmillReward_WaterAdLibitum
 % 
 % Maxime Maheu, (C)opyright 2022
 
+% Define which lick detection method to use
+lickdetect = 'SoftCode1'; % 'Port1In' or 'SoftCode1'
+
 % Define which reward port to use
 rewardport = 1;
 
@@ -20,7 +23,7 @@ sma = NewStateMachine;
 sma = AddState(sma, ...
     'Name', 'WaitForPoke', ...
     'Timer', 0,...
-    'StateChangeConditions', {sprintf('Port%iIn', rewardport), 'DeliverReward'}, ...
+    'StateChangeConditions', {lickdetect, 'DeliverReward'}, ...
     'OutputActions', {});
 
 % If poke is detected, deliver the predefined amount of reward. Once that
