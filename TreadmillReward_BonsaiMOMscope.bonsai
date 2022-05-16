@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.6.3"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:vid="clr-namespace:Bonsai.Video;assembly=Bonsai.Video"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
+                 xmlns:osc="clr-namespace:Bonsai.Osc;assembly=Bonsai.Osc"
+                 xmlns:p1="clr-namespace:OpenCV.Net;assembly=OpenCV.Net"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="vid:VideoCaptureDevice">
+          <vid:Index>0</vid:Index>
+          <vid:Format>
+            <vid:FrameSize>
+              <vid:Width>2048</vid:Width>
+              <vid:Height>1536</vid:Height>
+            </vid:FrameSize>
+            <vid:AverageFrameRate>75</vid:AverageFrameRate>
+            <vid:MaximumFrameRate>75</vid:MaximumFrameRate>
+            <vid:BitCount>24</vid:BitCount>
+          </vid:Format>
+          <vid:CaptureProperties />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:MaskPolygon">
+          <cv:Regions>
+            <cv:ArrayOfPoint>
+              <cv:Point>
+                <cv:X>1715</cv:X>
+                <cv:Y>569</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>1831</cv:X>
+                <cv:Y>569</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>1831</cv:X>
+                <cv:Y>691</cv:Y>
+              </cv:Point>
+              <cv:Point>
+                <cv:X>1715</cv:X>
+                <cv:Y>691</cv:Y>
+              </cv:Point>
+            </cv:ArrayOfPoint>
+          </cv:Regions>
+          <cv:MaskType>ToZero</cv:MaskType>
+          <cv:FillValue>
+            <cv:Val0>0</cv:Val0>
+            <cv:Val1>0</cv:Val1>
+            <cv:Val2>0</cv:Val2>
+            <cv:Val3>0</cv:Val3>
+          </cv:FillValue>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Grayscale" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Threshold">
+          <cv:ThresholdValue>128</cv:ThresholdValue>
+          <cv:MaxValue>255</cv:MaxValue>
+          <cv:ThresholdType>Binary</cv:ThresholdType>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:FindContours">
+          <cv:Mode>External</cv:Mode>
+          <cv:Method>ChainApproxNone</cv:Method>
+          <cv:Offset>
+            <cv:X>0</cv:X>
+            <cv:Y>0</cv:Y>
+          </cv:Offset>
+          <cv:MinArea xsi:nil="true" />
+          <cv:MaxArea xsi:nil="true" />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:BinaryRegionAnalysis" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:LargestBinaryRegion" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Area</Selector>
+      </Expression>
+      <Expression xsi:type="GreaterThan">
+        <Operand xsi:type="DoubleProperty">
+          <Value>5000</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:DistinctUntilChanged" />
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Condition">
+        <Description>True</Description>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>C:\Users\crais\Desktop\test.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>true</io:Overwrite>
+        <io:Suffix>None</io:Suffix>
+        <io:IncludeHeader>false</io:IncludeHeader>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>5</scr:Expression>
+      </Expression>
+      <Expression xsi:type="osc:SendMessage">
+        <osc:Connection>MATLAB</osc:Connection>
+        <osc:Address>/</osc:Address>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timestamp" />
+      </Expression>
+      <Expression xsi:type="io:CsvWriter">
+        <io:FileName>C:\Users\crais\Desktop\timestamps.csv</io:FileName>
+        <io:Append>false</io:Append>
+        <io:Overwrite>true</io:Overwrite>
+        <io:Suffix>None</io:Suffix>
+        <io:IncludeHeader>false</io:IncludeHeader>
+      </Expression>
+      <Expression xsi:type="PropertySource" TypeArguments="cv:MaskPolygon,p1:Point[][]">
+        <MemberName>Regions</MemberName>
+        <Value>
+          <ArrayOfPoint>
+            <Point>
+              <X>1101</X>
+              <Y>557</Y>
+            </Point>
+            <Point>
+              <X>1626</X>
+              <Y>557</Y>
+            </Point>
+            <Point>
+              <X>1626</X>
+              <Y>1101</Y>
+            </Point>
+            <Point>
+              <X>1101</X>
+              <Y>1101</Y>
+            </Point>
+          </ArrayOfPoint>
+          <ArrayOfPoint>
+            <Point>
+              <X>1331</X>
+              <Y>1107</Y>
+            </Point>
+            <Point>
+              <X>1273</X>
+              <Y>1107</Y>
+            </Point>
+            <Point>
+              <X>1273</X>
+              <Y>1126</Y>
+            </Point>
+            <Point>
+              <X>1331</X>
+              <Y>1126</Y>
+            </Point>
+          </ArrayOfPoint>
+        </Value>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="1" To="14" Label="Source1" />
+      <Edge From="1" To="16" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="10" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="14" To="15" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
