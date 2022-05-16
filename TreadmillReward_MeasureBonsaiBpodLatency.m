@@ -1,5 +1,8 @@
-% Use 'develop' branch Bpod
-% cd('C:\Users\crais\Documents\Bpod_Gen2-develop');
+% This script measures the delay between when an LED light is turned on and
+% when it is detected by Bonsai.
+% N.B. make sure you use 'develop' branch Bpod
+% 
+% Maxime Maheu, (C)opyright 2022
 
 % Declare global variable which can be accessed outside this function
 global BpodSystem;
