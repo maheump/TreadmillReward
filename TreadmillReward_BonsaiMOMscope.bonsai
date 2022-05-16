@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.6.3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:vid="clr-namespace:Bonsai.Video;assembly=Bonsai.Video"
@@ -105,7 +105,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="scr:ExpressionTransform">
-        <scr:Expression>5</scr:Expression>
+        <scr:Expression>1</scr:Expression>
       </Expression>
       <Expression xsi:type="osc:SendMessage">
         <osc:Connection>MATLAB</osc:Connection>
