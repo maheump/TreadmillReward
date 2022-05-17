@@ -16,11 +16,11 @@ param.ValveTime = GetValveTimes(S.GUI.Reward_amount, rewardport);
 methodlist = S.GUIMeta.Lick_detection_method.String;
 idmethod = S.GUI.Lick_detection_method;
 if strcmpi(methodlist{idmethod}, 'Camera + Bonsai')
-    param.outportlabel = 'SoftCode0';
     param.inportlabel  = 'SoftCode1';
+    param.outportlabel = 'SoftCode1';
 elseif strcmpi(methodlist{idmethod}, 'Photogate')
-    param.outportlabel = sprintf('Port%iOut', rewardport);
     param.inportlabel  = sprintf('Port%iIn',  rewardport);
+    param.outportlabel = sprintf('Port%iOut', rewardport);
 end
 
 % Get the ID of reward input BNC
