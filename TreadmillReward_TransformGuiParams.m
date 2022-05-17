@@ -17,7 +17,7 @@ methodlist = S.GUIMeta.Lick_detection_method.String;
 idmethod = S.GUI.Lick_detection_method;
 if strcmpi(methodlist{idmethod}, 'Camera + Bonsai')
     param.inportlabel  = 'SoftCode1';
-    param.outportlabel = 'SoftCode1';
+    param.outportlabel = 'SoftCode2';
 elseif strcmpi(methodlist{idmethod}, 'Photogate')
     param.inportlabel  = sprintf('Port%iIn',  rewardport);
     param.outportlabel = sprintf('Port%iOut', rewardport);

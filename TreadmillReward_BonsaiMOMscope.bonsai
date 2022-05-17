@@ -17,8 +17,8 @@
               <vid:Width>640</vid:Width>
               <vid:Height>480</vid:Height>
             </vid:FrameSize>
-            <vid:AverageFrameRate>300</vid:AverageFrameRate>
-            <vid:MaximumFrameRate>300</vid:MaximumFrameRate>
+            <vid:AverageFrameRate>600</vid:AverageFrameRate>
+            <vid:MaximumFrameRate>600</vid:MaximumFrameRate>
             <vid:BitCount>24</vid:BitCount>
           </vid:Format>
           <vid:CaptureProperties />
@@ -29,20 +29,20 @@
           <cv:Regions>
             <cv:ArrayOfPoint>
               <cv:Point>
-                <cv:X>530</cv:X>
-                <cv:Y>248</cv:Y>
+                <cv:X>186</cv:X>
+                <cv:Y>42</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>606</cv:X>
-                <cv:Y>248</cv:Y>
+                <cv:X>430</cv:X>
+                <cv:Y>42</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>606</cv:X>
-                <cv:Y>336</cv:Y>
+                <cv:X>430</cv:X>
+                <cv:Y>344</cv:Y>
               </cv:Point>
               <cv:Point>
-                <cv:X>530</cv:X>
-                <cv:Y>336</cv:Y>
+                <cv:X>186</cv:X>
+                <cv:Y>344</cv:Y>
               </cv:Point>
             </cv:ArrayOfPoint>
           </cv:Regions>
@@ -104,8 +104,6 @@
 def process(value):
   if value[0] == 0 and value[1] == 1:
     return True
-  elif value[0] == 1 and value[1] == 0:
-    return True
   else:
     return False</scr:Script>
       </Expression>
@@ -130,6 +128,35 @@ def process(value):
         <osc:Connection>MATLAB</osc:Connection>
         <osc:Address>/</osc:Address>
       </Expression>
+      <Expression xsi:type="scr:PythonTransform">
+        <scr:Script>@returns(bool)
+def process(value):
+  if value[0] == 1 and value[1] == 0:
+    return True
+  else:
+    return False</scr:Script>
+      </Expression>
+      <Expression xsi:type="Condition">
+        <Description>True</Description>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>2</scr:Expression>
+      </Expression>
+      <Expression xsi:type="osc:SendMessage">
+        <osc:Connection>MATLAB</osc:Connection>
+        <osc:Address>/</osc:Address>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
@@ -144,9 +171,13 @@ def process(value):
       <Edge From="8" To="10" Label="Source1" />
       <Edge From="9" To="10" Label="Source2" />
       <Edge From="10" To="11" Label="Source1" />
+      <Edge From="10" To="15" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
