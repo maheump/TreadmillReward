@@ -1,6 +1,8 @@
 % This script measures the delay between when an LED light is turned on and
 % when it is detected by Bonsai.
-% N.B. make sure you use 'develop' branch Bpod
+% N.B.1 make sure you use the 'develop' branch of Bpod
+% N.B.2 make sure you use an exposure time (in the camera acquisition
+% software) shorter than the camera frame rate (which should be fast)
 % 
 % Maxime Maheu, (C)opyright 2022
 
