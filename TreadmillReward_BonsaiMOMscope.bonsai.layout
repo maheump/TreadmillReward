@@ -3,10 +3,10 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  >
   <DialogSettings>
-    <Visible>false</Visible>
+    <Visible>true</Visible>
     <Location>
-      <X>2824</X>
-      <Y>-83</Y>
+      <X>3026</X>
+      <Y>-205</Y>
     </Location>
     <Size>
       <Width>336</Width>
@@ -105,8 +105,8 @@
   <DialogSettings>
     <Visible>false</Visible>
     <Location>
-      <X>2742</X>
-      <Y>-30</Y>
+      <X>2980</X>
+      <Y>71</Y>
     </Location>
     <Size>
       <Width>416</Width>
@@ -117,17 +117,17 @@
     <VisualizerSettings>
       <TimeSeriesVisualizer>
         <Capacity>640</Capacity>
-        <Min>690</Min>
-        <Max>725</Max>
+        <Min>0</Min>
+        <Max>30</Max>
         <AutoScale>true</AutoScale>
       </TimeSeriesVisualizer>
     </VisualizerSettings>
   </DialogSettings>
   <DialogSettings>
-    <Visible>false</Visible>
+    <Visible>true</Visible>
     <Location>
-      <X>3264</X>
-      <Y>-83</Y>
+      <X>2641</X>
+      <Y>363</Y>
     </Location>
     <Size>
       <Width>416</Width>
@@ -140,6 +140,52 @@
         <Capacity>640</Capacity>
       </BooleanTimeSeriesVisualizer>
     </VisualizerSettings>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>true</Visible>
+    <Location>
+      <X>3150</X>
+      <Y>744</Y>
+    </Location>
+    <Size>
+      <Width>416</Width>
+      <Height>279</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+    <VisualizerTypeName>Bonsai.Design.Visualizers.BooleanTimeSeriesVisualizer</VisualizerTypeName>
+    <VisualizerSettings>
+      <BooleanTimeSeriesVisualizer>
+        <Capacity>640</Capacity>
+      </BooleanTimeSeriesVisualizer>
+    </VisualizerSettings>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>true</Visible>
+    <Location>
+      <X>2622</X>
+      <Y>769</Y>
+    </Location>
+    <Size>
+      <Width>336</Width>
+      <Height>65</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+    <VisualizerTypeName>Bonsai.Design.ObjectTextVisualizer</VisualizerTypeName>
+    <VisualizerSettings>
+      <ObjectTextVisualizer />
+    </VisualizerSettings>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
   </DialogSettings>
   <DialogSettings>
     <Visible>false</Visible>
