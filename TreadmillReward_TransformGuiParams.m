@@ -22,6 +22,7 @@ elseif strcmpi(methodlist{idmethod}, 'Photogate')
     param.inportlabel  = sprintf('Port%iIn',  rewardport);
     param.outportlabel = sprintf('Port%iOut', rewardport);
 end
+param.LEDid = sprintf('PWM%i', rewardport);
 
 % Get the ID of reward input BNC
 param.lowBNCid  = sprintf('BNC%iLow',  S.GUI.BNC_input_Reward_location);
