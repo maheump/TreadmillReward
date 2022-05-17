@@ -10,9 +10,6 @@ global BpodSystem;
 % Clear data from previous session
 BpodSystem.Data = [];
 
-% Load settings chosen in launch manager
-S = BpodSystem.ProtocolSettings;
-
 % Define the number of measures to perform
 nTest = 500;
 
@@ -20,7 +17,8 @@ nTest = 500;
 ISI = 0.1; % second
 
 % Create figure
-figure; axis; hold('on');
+figure('Color', 'w'); axis; hold('on');
+xlabel('Measure ID'); ylabel('Delay [ms]');
 
 % Loop over measurements
 delay = NaN(1,nTest);
