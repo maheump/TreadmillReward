@@ -157,6 +157,14 @@ def process(value):
         <osc:Connection>MATLAB</osc:Connection>
         <osc:Address>/</osc:Address>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="osc:CreateTcpClient">
+          <osc:Name>MATLAB</osc:Name>
+          <osc:HostName>localhost</osc:HostName>
+          <osc:Port>11235</osc:Port>
+          <osc:NoDelay>false</osc:NoDelay>
+        </Combinator>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
