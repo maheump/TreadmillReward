@@ -1,22 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.6.3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:osc="clr-namespace:Bonsai.Osc;assembly=Bonsai.Osc"
                  xmlns:vid="clr-namespace:Bonsai.Video;assembly=Bonsai.Video"
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
+                 xmlns:osc="clr-namespace:Bonsai.Osc;assembly=Bonsai.Osc"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="osc:CreateTcpClient">
-          <osc:Name>MATLAB</osc:Name>
-          <osc:HostName>localhost</osc:HostName>
-          <osc:Port>11235</osc:Port>
-          <osc:NoDelay>false</osc:NoDelay>
-        </Combinator>
-      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="vid:VideoCaptureDevice">
           <vid:Index>0</vid:Index>
@@ -108,20 +100,74 @@
         <Combinator xsi:type="rx:Zip" />
       </Expression>
       <Expression xsi:type="scr:PythonTransform">
-        <scr:Script>@returns(int)
+        <scr:Script>@returns(bool)
 def process(value):
   if value[0] == 0 and value[1] == 1:
-    message = 1
-  elif value[0] == 1 and value[1] == 0:
-    message = 2
-  return message</scr:Script>
+    return True
+  else:
+    return False</scr:Script>
+      </Expression>
+      <Expression xsi:type="Condition">
+        <Description>True</Description>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>1</scr:Expression>
       </Expression>
       <Expression xsi:type="osc:SendMessage">
         <osc:Connection>MATLAB</osc:Connection>
         <osc:Address>/</osc:Address>
       </Expression>
+      <Expression xsi:type="scr:PythonTransform">
+        <scr:Script>@returns(bool)
+def process(value):
+  if value[0] == 1 and value[1] == 0:
+    return True
+  else:
+    return False</scr:Script>
+      </Expression>
+      <Expression xsi:type="Condition">
+        <Description>True</Description>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>2</scr:Expression>
+      </Expression>
+      <Expression xsi:type="osc:SendMessage">
+        <osc:Connection>MATLAB</osc:Connection>
+        <osc:Address>/</osc:Address>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="osc:CreateTcpClient">
+          <osc:Name>MATLAB</osc:Name>
+          <osc:HostName>localhost</osc:HostName>
+          <osc:Port>11235</osc:Port>
+          <osc:NoDelay>false</osc:NoDelay>
+        </Combinator>
+      </Expression>
     </Nodes>
     <Edges>
+      <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
       <Edge From="3" To="4" Label="Source1" />
@@ -130,11 +176,16 @@ def process(value):
       <Edge From="6" To="7" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
       <Edge From="8" To="9" Label="Source1" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="9" To="11" Label="Source1" />
-      <Edge From="10" To="11" Label="Source2" />
+      <Edge From="8" To="10" Label="Source1" />
+      <Edge From="9" To="10" Label="Source2" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="10" To="15" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
