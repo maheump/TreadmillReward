@@ -42,6 +42,9 @@ for iRewLoc = 1:MaxRewLoc
     % Sync parameters with the GUI
     S = BpodParameterGUI('Sync', S);
     
+    % Check that all GUI inputs make sense
+    S.GUI = TreadmillReward_CheckParamGUI(S.GUI);
+    
     % Get parameters from the GUI
     param = TreadmillReward_TransformGuiParams(S);
     

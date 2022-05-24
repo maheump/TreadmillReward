@@ -8,8 +8,7 @@ function S = TreadmillReward_CreateParamGUI(S)
 global BpodSystem;
 
 % Get location where datafiles are saved
-fullpath = BpodSystem.Path.CurrentDataFile;
-path2data = fileparts(fullpath);
+path2data = BpodSystem.Path.DataFolder;
 
 % Specify default parameters
 S.GUI.Save_data                       = 0;         % whether to save data as MATLAB file
@@ -24,6 +23,12 @@ S.GUI.Reward_amount                   = 5;         % microliter(s)
 S.GUI.Reward_probability              = 1;         % probability, 0.8
 S.GUI.Min_num_laps_before_first_catch = 10;        % number of laps
 S.GUI.Min_num_laps_between_catch      = 3;         % number of laps
+
+% Check that all GUI inputs make sense
+S.GUI = TreadmillReward_CheckParamGUI(S.GUI);
+
+% Specify that path to data is text input
+S.GUIMeta.Path_to_data.Style = 'Text';
 
 % Specify that some of those parameters should be shown as check boxes
 S.GUIMeta.Save_data.Style = 'CheckBox';
