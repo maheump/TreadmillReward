@@ -35,13 +35,15 @@ if ~any(paramstruct.BNC_output_Rewards ~= [1,2])
     paramstruct.BNC_output_Rewards = 2;
 end
 
-% Make reward window visibility flag is boolean
+% Make sure reward parameters are boolean
 if ~any(paramstruct.Reward_window_visibility ~= [0,1])
     warning('Reward window visibility flag not valid');
     paramstruct.Reward_window_visibility = 0;
 end
-
-% Make unlimited reward flag is boolean
+if ~any(paramstruct.Automatic_reward_delivery ~= [0,1])
+    warning('Automatic reward visibility flag not valid');
+    paramstruct.Automatic_reward_delivery = 0;
+end
 if ~any(paramstruct.Unlimited_reward ~= [0,1])
     warning('Unlimited reward flag not valid');
     paramstruct.Unlimited_reward = 0;
@@ -67,6 +69,13 @@ end
 if paramstruct.Min_num_laps_between_catch < 0
     warning('Minimum number of laps not valid');
     paramstruct.Min_num_laps_between_catch = 0;
+end
+
+% If the automatic reward delivery mode has been activated, adapt the other
+% inputs
+if paramstruct.Automatic_reward_delivery
+    paramstruct.Unlimited_reward = 1;
+    paramstruct.Reward_probability = 1;
 end
 
 end

@@ -18,6 +18,7 @@ S.GUI.BNC_input_Reward_location       = 1;         % BNC input ID
 S.GUI.BNC_output_Licks                = 1;         % BNC output ID
 S.GUI.BNC_output_Rewards              = 2;         % BNC output ID
 S.GUI.Reward_window_visibility        = 0;         % boolean
+S.GUI.Automatic_reward_delivery       = 0;         % boolean
 S.GUI.Unlimited_reward                = 0;         % boolean
 S.GUI.Reward_amount                   = 5;         % microliter(s)
 S.GUI.Reward_probability              = 1;         % probability, 0.8
@@ -33,6 +34,7 @@ S.GUIMeta.Path_to_data.Style = 'Text';
 % Specify that some of those parameters should be shown as check boxes
 S.GUIMeta.Save_data.Style = 'CheckBox';
 S.GUIMeta.Reward_window_visibility.Style = 'CheckBox';
+S.GUIMeta.Automatic_reward_delivery.Style = 'CheckBox';
 S.GUIMeta.Unlimited_reward.Style = 'CheckBox';
 
 % Add a pop-up menu which specifies which lick detection method to use
@@ -43,9 +45,9 @@ S.GUIMeta.Lick_detection_method.String = {'Camera + Bonsai', 'Photogate'};
 S.GUIPanels.Data = {'Save_data', 'Path_to_data'};
 S.GUIPanels.Connections = {'Lick_detection_method', 'BNC_input_Reward_location', ...
     'BNC_output_Licks', 'BNC_output_Rewards'};
-S.GUIPanels.Rewards = {'Reward_window_visibility', 'Unlimited_reward', ...
-    'Reward_amount', 'Reward_probability', 'Min_num_laps_before_first_catch', ...
-    'Min_num_laps_between_catch'};
+S.GUIPanels.Rewards = {'Reward_window_visibility', 'Automatic_reward_delivery', ...
+    'Unlimited_reward', 'Reward_amount', 'Reward_probability', ...
+    'Min_num_laps_before_first_catch', 'Min_num_laps_between_catch'};
 
 % Create GUI with task parameters
 BpodParameterGUI('init', S);

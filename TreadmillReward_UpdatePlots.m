@@ -14,7 +14,12 @@ TotalRewardDisplay('add', RewardAmount);
 
 % Update the outcome plot
 CurrentTrial = BpodSystem.Data.RawEvents.Trial{iRewLoc};
-NumOfRewardDeliveries = sum(~isnan(CurrentTrial.States.DetectedRewardedLicks(1:2:end)));
+if S.GUI.Automatic_reward_delivery
+    field = CurrentTrial.States.WaterCollected;
+elseif ~S.GUI.Automatic_reward_delivery
+    field = CurrentTrial.States.DetectedRewardedLicks;
+end
+NumOfRewardDeliveries = sum(~isnan(field(1:2:end)));
 Outcomes(iRewLoc) = double(NumOfRewardDeliveries > 0);
 TrialTypeOutcomePlot(BpodSystem.GUIHandles.OutcomePlot, ...
     'update', iRewLoc + 1, TrialTypes, Outcomes(1:iRewLoc));
