@@ -51,6 +51,6 @@ S.GUIPanels.Rewards = {'Reward_window_visibility', 'Automatic_reward_delivery', 
 
 % Create GUI with task parameters
 BpodParameterGUI('init', S);
-set(BpodSystem.ProtocolFigures.ParameterGUI, 'Position', [906 100 450 629]);
+set(BpodSystem.ProtocolFigures.ParameterGUI, 'Color', 'w', 'Position', [906 100 450 629]);
 
 end
