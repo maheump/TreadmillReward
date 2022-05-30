@@ -53,4 +53,11 @@ S.GUIPanels.Rewards = {'Reward_window_visibility', 'Automatic_reward_delivery', 
 BpodParameterGUI('init', S);
 set(BpodSystem.ProtocolFigures.ParameterGUI, 'Color', 'w', 'Position', [906 100 450 629]);
 
+% Change font size
+c = BpodSystem.ProtocolFigures.ParameterGUI.Children;
+arrayfun(@(x) set(c(x), 'FontSize', 10), 1:numel(c), 'uni', 0);
+
+% Use white background
+arrayfun(@(x) set(c(x), 'BackgroundColor', ones(1,3)), 1:numel(c), 'uni', 0);
+
 end

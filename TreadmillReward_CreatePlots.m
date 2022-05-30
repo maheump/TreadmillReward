@@ -16,5 +16,6 @@ BpodSystem.ProtocolFigures.OutcomePlotFig = figure('Name', ...
     'Resize', 'Off', 'Color', 'w', 'Position', [80 529 825 200]);
 BpodSystem.GUIHandles.OutcomePlot = axes('Position', [.075 .3 .89 .6]);
 TrialTypeOutcomePlot(BpodSystem.GUIHandles.OutcomePlot, 'init', TrialTypes);
+set(BpodSystem.GUIHandles.OutcomePlot, 'FontSize', 10);
 
 end
