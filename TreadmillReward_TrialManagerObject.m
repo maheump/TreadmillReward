@@ -64,6 +64,7 @@ for iRewLoc = 1:MaxRewLoc
     if BpodSystem.Status.BeingUsed == 0; return; end
     
     % Sync parameters with the GUI
+    prevS = S;
     S = BpodParameterGUI('Sync', S);
     
     % Check that all GUI inputs make sense
@@ -73,9 +74,7 @@ for iRewLoc = 1:MaxRewLoc
     param = TreadmillReward_TransformGuiParams(S);
     
     % Update trial list if the reward probability was changed
-    if iRewLoc > 1
-        TrialTypes = TreadmillReward_UpdateTrialList(S, TrialTypes, iRewLoc, MaxRewLoc);
-    end
+    TrialTypes = TreadmillReward_UpdateTrialList(S, prevS, TrialTypes, iRewLoc, MaxRewLoc);
     
     % Start next trial
     % ~~~~~~~~~~~~~~~~
