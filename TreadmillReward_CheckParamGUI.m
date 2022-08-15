@@ -74,7 +74,6 @@ end
 % If the automatic reward delivery mode has been activated, adapt the other
 % inputs
 if paramstruct.Automatic_reward_delivery
-    paramstruct.Unlimited_reward = 1;
     paramstruct.Reward_probability = 1;
 end
 
